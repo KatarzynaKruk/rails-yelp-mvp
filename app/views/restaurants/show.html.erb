@@ -1,18 +1,36 @@
-<h2><%= @restaurant.name %></h2>
-<p><%= @restaurant.address %></p>
-<p><%= @restaurant.phone_number %></p>
-<br>
+<div class="container mt-4">
+  <div class="card mb-4 shadow-sm">
+    <div class="card-body">
 
-<div>
-  <p>reviews</p>
-  <ul>
-    <% @restaurant.reviews.each do |review| %>
-      <li><%= review.content %></li>
-    <% end %>
-  </ul>
+      <h1 class="card-title"><%= @restaurant.name %></h1>
+
+      <i class="bi bi-geo-alt"></i>
+      <p class="mb-1 text-muted">
+        <%= @restaurant.address %>
+      </p>
+
+      <p class="mb-3 text-muted">
+        <i class="bi bi-telephone"></i>
+        <%= @restaurant.phone_number %>
+      </p>
+
+      <div class="d-flex gap-2">
+        <%= link_to "Back to list", restaurants_path, class: "btn btn-primary" %>
+        <%= link_to "Add a review", restaurant_new_reviews_path(@restaurant), class: "btn btn-primary mt-2 mb-2" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="card shadow-sm">
+    <div class="card-body">
+
+      <h2 class="card-title mb-3">Reviews</h2>
+      <ul class="list-group list-group-flush">
+        <% @restaurant.reviews.each do |review| %>
+          <li><%= review.content %></li>
+        <% end %>
+      </ul>
+
+    </div>
+  </div>
 </div>
-
-<br>
-<%= link_to "Back to list", restaurants_path, class: "btn btn-primary" %>
-<br>
-<%= link_to "Add a review", restaurant_new_reviews_path(@restaurant), class: "btn btn-primary mt-2" %>
